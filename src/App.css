@@ -1,0 +1,389 @@
+body {
+  background-color: #e5ddd5;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.chat-app {
+  max-width: 600px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.chat-app h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.sign-out-btn {
+  background-color: #dc3545;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.chat-room {
+  margin-top: 20px;
+}
+
+.chat-room h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.leave-room-btn {
+  background-color: #dc3545;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.message-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.message {
+  margin-bottom: 10px;
+}
+
+.message.sent {
+  text-align: right;
+}
+
+.message.received {
+  text-align: left;
+}
+
+.message strong {
+  font-weight: bold;
+}
+
+.message-input {
+  display: flex;
+  margin-top: 20px;
+}
+
+.message-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px 0 0 4px;
+}
+
+.send-message-btn {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.chat-rooms {
+  margin-top: 20px;
+}
+
+.chat-rooms h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.create-room-btn {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px 0 0 4px;
+}
+
+.search-btn {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  margin: 1%;
+}
+
+.room-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.room-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.room-list li:hover {
+  background-color: #f0f0f0;
+}
+
+.room-list li button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.sign-out-btn {
+  padding: 8px 16px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.search-btn {
+  padding: 8px 16px;
+  background-color: #ddd;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.search-btn.active {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+.search-input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.search-results {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.search-results li {
+  margin-bottom: 10px;
+}
+
+.search-results li button {
+  padding: 8px 16px;
+  background-color: #2196f3;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.login-page {
+  text-align: center;
+}
+
+.app-title {
+  margin-bottom: 20px;
+}
+
+.google-sign-in-btn {
+  padding: 8px 16px;
+  background-color: #dd4b39;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.private-chat-messages {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.private-chat-message {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.private-chat-message.sent {
+  justify-content: flex-end;
+}
+
+.private-chat-message.received {
+  justify-content: flex-start;
+}
+
+.private-chat-message .message-content {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f2f2f2;
+}
+
+.private-chat-input {
+  display: flex;
+  margin-top: 10px;
+}
+
+.private-chat-input input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.private-chat-input .send-private-message-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.leave-private-chat-btn {
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #dc3545;
+  color: #fff;
+  cursor: pointer;
+}
+.private-chat-messages {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.private-chat-message {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.private-chat-message.sent {
+  justify-content: flex-end;
+}
+
+.private-chat-message.received {
+  justify-content: flex-start;
+}
+
+.private-chat-message .message-content {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f2f2f2;
+}
+
+.private-chat-input {
+  display: flex;
+  margin-top: 10px;
+}
+
+.private-chat-input input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.private-chat-input .send-private-message-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.leave-private-chat-btn {
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #dc3545;
+  color: #fff;
+  cursor: pointer;
+}
+.listSearch{
+  border: 1px solid rgb(203, 203, 255);
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding:5px;
+}
+
+.private-chat-messages {
+  list-style: none;
+  padding: 0;
+}
+
+.private-chat-message {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.private-chat-message.sent {
+  justify-content: flex-end;
+}
+
+.private-chat-message .message-content {
+  background-color: #e9e9e9;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 70%;
+}
+
+.private-chat-message.sent .message-content {
+  background-color: #dcf8c6;
+}
+
+.private-chat-message.received .message-content {
+  background-color: #fff;
+}

@@ -1,0 +1,45 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "Messages",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "Reciever",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Sender",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Timestamp",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Messages",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "Sender",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Reciever",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Content",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Timestamp",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
