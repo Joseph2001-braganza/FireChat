@@ -7,7 +7,14 @@ import './App.css';
 // Initialize Firebase
 const firebaseConfig = {
   // Your Firebase configuration
-  
+  apiKey: "AIzaSyC1o8w_42AI-QXI4mGI6dxFMVcgamZeIGo",
+  authDomain: "chatzzapp-a24dd.firebaseapp.com",
+  databaseURL: "https://chatzzapp-a24dd-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "chatzzapp-a24dd",
+  storageBucket: "chatzzapp-a24dd.appspot.com",
+  messagingSenderId: "668671561630",
+  appId: "1:668671561630:web:78e761720d83e3e9fdd08f",
+  measurementId: "G-WGP0P94J2V"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -32,6 +39,7 @@ const App = () => {
 
   // Authenticate user with Google
   const signInWithGoogle = async () => {
+    setSelectedUser(null)
     const provider = new firebase.auth.GoogleAuthProvider();
     try {
       const result = await firebase.auth().signInWithPopup(provider);
@@ -69,6 +77,7 @@ const App = () => {
   // Functions to handle which search mode to use
   const switchToGroupSearch = () => {
     setSearchMode('group');
+    setSelectedUser(null)
     setSearchQuery('');
   };
 
@@ -141,7 +150,39 @@ const startPrivateChat = (user) => {
 // ...
 
 
+  //Group Search.
+  const GroupSearch=(RoomName)=>{
 
+    //main logic
+    console.log(RoomName);
+    const chatData=firebase
+    .database()
+    .ref("chatRooms")
+    .orderByChild("name")
+    .equalTo(RoomName)
+    .limitToFirst(1)
+
+    console.log(chatData)
+
+    chatData.on("value", (snapshot) => {
+      if (snapshot.exists()) {
+        // Room exists in the database
+        console.log("Room exists");
+        // Access the room data using snapshot.val()
+        console.log("Room data:", snapshot.val());
+      } else {
+        // Room does not exist in the database
+        console.log("Room does not exist");
+      }
+    }, (error) => {
+      console.error("Error searching for room:", error);
+    });
+  }
+
+  //User Search
+  const UserSearch=(PersonName)=>{
+    console.log(PersonName)
+  }
 
   // Log out user
   const signOut = async () => {
@@ -205,6 +246,7 @@ const startPrivateChat = (user) => {
       // Remove the chat room from the database
       firebase.database().ref(`chatRooms/${roomId}`).remove();
     }
+    console.log('removing')
   };
 
   // Send a new message
@@ -221,7 +263,7 @@ const startPrivateChat = (user) => {
   };
 
 // Send a private chat message
-// Send a private chat message
+
 const sendPrivateMessage = (messageContent) => {
   const timestamp = firebase.database.ServerValue.TIMESTAMP;
   console.log(newPrivateMessage)
@@ -238,7 +280,15 @@ const sendPrivateMessage = (messageContent) => {
 
   // Push the private chat message to the messages list
   privateChatRef.child('messages').push(privateChatMessage);
+
 };
+
+//removing the private Chat Rooms let's go ...
+const leavePrivateChatRoom=()=>{
+  setCurrentPrivateChat(null)
+  setPrivateChatMessages([])
+  setSelectedUser(null)
+}
 
 
 
@@ -287,6 +337,9 @@ const getPrivateChatKey = (userId) => {
     }
   }, [currentPrivateChat]);
 
+  //setCurrentPrivateChat(null)
+  //setPrivateChatMessages([])
+              
   return (
     <div className="app">
       {user ? (
@@ -295,13 +348,46 @@ const getPrivateChatKey = (userId) => {
           <button className="sign-out-btn" onClick={signOut}>
             Sign Out
           </button>
-
-          {currentRoom ? (
-            <div className="chat-room">
+          {currentRoom || selectedUser? (selectedUser !== null ? (
+             <div className="private-chat">
+             <div className='private-chat-header'>
+             <h2>Private Chat: {selectedUser.displayName}</h2>
+             <button className="leave-private-chat-btn" onClick={leavePrivateChatRoom}>
+               Leave Private Chat
+             </button>
+             </div>
+             <ul className="private-chat-messages">
+               {privateChatMessages.map(({ content, sender }) => (
+             <li
+             className={`private-chat-message ${
+             sender === user.uid ? 'sent' : 'received'
+             }`}
+            >
+           <span className="message-content">{content}</span>
+           </li>
+           ))}
+         </ul>
+             <div className="private-chat-input">
+               <input
+                 type="text"
+                 placeholder="Type your message..."
+                 value={newPrivateMessage}
+                 onChange={(e) => setNewPrivateMessage(e.target.value)}
+               />
+               <button className="send-private-message-btn" onClick={sendPrivateMessage}>
+                 Send
+               </button>
+             </div>
+           </div>
+          ):(
+            ( 
+              <div className="chat-room">
+              <div className='chat-room-header'>
               <h2>Chat Room: {chatRooms.find(([id]) => id === currentRoom)[1].name}</h2>
               <button className="leave-room-btn" onClick={leaveChatRoom}>
                 Leave Room
               </button>
+              </div>
               <ul className="message-list">
                 {messages.map(({ content, sender }, index) => (
                   <li
@@ -312,7 +398,6 @@ const getPrivateChatKey = (userId) => {
                   </li>
                 ))}
               </ul>
-
               <div className="message-input">
                 <input
                   type="text"
@@ -325,13 +410,13 @@ const getPrivateChatKey = (userId) => {
                 </button>
               </div>
             </div>
-          ) : (
+            ) 
+          )): (
             <div className="chat-rooms">
               <h2>Chat Rooms</h2>
               <button className="create-room-btn" onClick={createChatRoom}>
                 Create New Room
               </button>
-
               <div className="search-bar">
                 <button
                   className={`search-btn ${searchMode === 'group' ? 'active' : ''}`}
@@ -352,6 +437,7 @@ const getPrivateChatKey = (userId) => {
                   placeholder={`Search ${searchMode === 'group' ? 'group' : 'user'}`}
                   className="search-input"
                 />
+                <button className={`search-btn ${searchMode === 'group' ? 'active' : ''}`} onClick={searchMode?()=>GroupSearch(searchQuery) :()=>UserSearch(searchQuery)}>{`Search for ${searchMode}`}</button>
               </div>
 
               <ul className="search-results">
@@ -377,29 +463,29 @@ const getPrivateChatKey = (userId) => {
                       {user1.displayName}
                       <button onClick={() => startPrivateChat(user1)}>Message</button>
                     </li>
-                  ))}
+                ))}
               </ul>
             </div>
           )}
-          {searchMode === 'user'&& selectedUser&&(
+          {/* {searchMode === 'user'&& selectedUser&&(
             <div className="private-chat">
+              <div className='private-chat-header'>
               <h2>Private Chat: {selectedUser.displayName}</h2>
               <button className="leave-private-chat-btn" onClick={() => setCurrentPrivateChat(null)}>
                 Leave Private Chat
               </button>
+              </div>
               <ul className="private-chat-messages">
                 {privateChatMessages.map(({ content, sender }) => (
-                  
               <li
               className={`private-chat-message ${
               sender === user.uid ? 'sent' : 'received'
               }`}
              >
             <span className="message-content">{content}</span>
-          </li>
-  ))}
-</ul>
-
+            </li>
+            ))}
+          </ul>
               <div className="private-chat-input">
                 <input
                   type="text"
@@ -412,7 +498,7 @@ const getPrivateChatKey = (userId) => {
                 </button>
               </div>
             </div>
-          )}
+          )} */}
         </div>
       ) : (
         <div className="sign-in">

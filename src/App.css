@@ -1,18 +1,21 @@
 body {
-  background-color: #e5ddd5;
+  background-color: #160068;
 }
 
 .app {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
   height: 100vh;
 }
 
 .chat-app {
-  max-width: 600px;
+  max-width: 1200px;
   width: 100%;
-  background-color: #ffffff;
+  max-height: 800px;
+  height: 100%;
+  background-color: #0053d9;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -35,6 +38,21 @@ body {
 
 .chat-room {
   margin-top: 20px;
+  height: 40rem;
+  background-color: rgb(187, 197, 197);
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.chat-room-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #1f30eb;
+  color: #fff;
 }
 
 .chat-room h2 {
@@ -51,22 +69,36 @@ body {
   cursor: pointer;
 }
 
+
+
 .message-list {
+  display: flex;
   list-style-type: none;
   padding: 0;
   margin: 20px 0;
+  flex-direction: column;
 }
 
 .message {
+  display: flex;
+  align-items: center;
   margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
 }
 
 .message.sent {
+  display: flex;
+  background-color: #dcf8c6;
   text-align: right;
+  justify-content: flex-end;
 }
 
 .message.received {
+  display: flex;
   text-align: left;
+  background-color: #ffffff;
+  justify-content: flex-start;
 }
 
 .message strong {
@@ -74,8 +106,9 @@ body {
 }
 
 .message-input {
+  margin-top: auto;
   display: flex;
-  margin-top: 20px;
+  justify-content: flex-end;
 }
 
 .message-input input {
@@ -94,14 +127,6 @@ body {
   cursor: pointer;
 }
 
-.chat-rooms {
-  margin-top: 20px;
-}
-
-.chat-rooms h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
 
 .create-room-btn {
   background-color: #007bff;
@@ -203,6 +228,7 @@ body {
 }
 
 .search-results {
+  width: 30em;
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -228,22 +254,46 @@ body {
 
 .app-title {
   margin-bottom: 20px;
+  color: #cccccc;
 }
 
-.google-sign-in-btn {
-  padding: 8px 16px;
-  background-color: #dd4b39;
-  color: #fff;
+.sign-in-btn {
+  background-color: #ff0000;
+  color:  #ecdf2f;
   border: none;
+  padding: 10px 20px;
+  font-size: 16px;
   border-radius: 4px;
-  font-size: 14px;
-  cursor: pointer;
+  cursor: url('https://e7.pngegg.com/pngimages/337/722/png-clipart-google-search-google-account-google-s-google-play-google-company-text.png'),auto;  
+}
+
+.sign-in-btn:hover {
+  background-color: #179412;
+  color: #1900ff;
+}
+
+
+.private-chat {
+  background-color: rgb(187, 197, 197);
+  display: flex;
+  flex-direction: column;
+  height: 40rem;
+  position: relative;
+  padding: auto;
+}
+
+.private-chat-input {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .private-chat-messages {
   list-style: none;
   padding: 0;
   margin: 0;
+  overflow-y: auto;
+  max-height: calc(100% - 150px); 
 }
 
 .private-chat-message {
@@ -266,11 +316,6 @@ body {
   background-color: #f2f2f2;
 }
 
-.private-chat-input {
-  display: flex;
-  margin-top: 10px;
-}
-
 .private-chat-input input[type="text"] {
   flex: 1;
   padding: 10px;
@@ -288,6 +333,7 @@ body {
 }
 
 .leave-private-chat-btn {
+  width: 10rem;
   padding: 5px;
   border: none;
   border-radius: 5px;
@@ -319,11 +365,6 @@ body {
   padding: 10px;
   border-radius: 10px;
   background-color: #f2f2f2;
-}
-
-.private-chat-input {
-  display: flex;
-  margin-top: 10px;
 }
 
 .private-chat-input input[type="text"] {
@@ -386,4 +427,13 @@ body {
 
 .private-chat-message.received .message-content {
   background-color: #fff;
+}
+
+.private-chat-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #1f30eb;
+  color: #fff;
 }
