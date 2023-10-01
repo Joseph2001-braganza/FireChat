@@ -7,7 +7,7 @@ import './App.css';
 // Initialize Firebase
 const firebaseConfig = {
   // Your Firebase configuration
-  apiKey: "AIzaSyC1o8w_42AI-QXI4mGI6dxFMVcgamZeIGo",
+  apiKey: "Your_Api_Key",
   authDomain: "chatzzapp-a24dd.firebaseapp.com",
   databaseURL: "https://chatzzapp-a24dd-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "chatzzapp-a24dd",
